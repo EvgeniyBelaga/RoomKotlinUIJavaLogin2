@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * @version V.2019.06.03_roomkotlinjavalogin
  *
- * todo: Commit message: [2019.06.03_09:06 Yariv] Initial commit Evg_0603
+ * todo: Commit message: [2019.06.03_09:20 Evgeniy] Deleted unused clclasses
  *
  * Description: Used as prototype for other app
  *
