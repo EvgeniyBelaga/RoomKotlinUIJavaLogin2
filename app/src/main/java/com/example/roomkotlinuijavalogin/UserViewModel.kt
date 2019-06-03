@@ -2,6 +2,9 @@ package com.example.roomkotlinuijavalogin
 
 import android.app.Application
 import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -44,6 +47,30 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 //        for(user in MyUtils.usersByName){
 //            Log.d("LoginV","UserViewModel. finUserByName: "+ user.toString())
 //        }
+    }
+
+    fun findUserByNameAndPasswordViewModel(name: String, password: String,
+                                           etName:EditText, etPassword:EditText,
+                                           btnSubmit:Button, btnLogout:Button)= viewModelScope.launch(Dispatchers.IO) {
+        var usersByNameAndPassword= repository.findUserByNameAndPasswordRepository(name, password)
+        if (usersByNameAndPassword != null) {
+            Log.d("LoginV","UserViewModel.findUserByNameAndPasswordViewModel: size "+ usersByNameAndPassword.size)
+            if(usersByNameAndPassword.size>0){
+                MyUtils.isLogin= true
+//                val mainActivity:MainActivity= MainActivity()
+//                mainActivity.initilizeLayoutDisplay()
+                etName.visibility= View.GONE
+                etPassword.visibility= View.GONE
+                btnSubmit.visibility= View.GONE
+                btnLogout.visibility= View.VISIBLE
+            }
+            for(user in usersByNameAndPassword){
+                Log.d("LoginV","UserViewModel. finUserByNameAndPasswordViewModel: "+ user.toString())
+            }
+        }
+        else{
+            Log.d("LoginV","UserViewModel. finUserByNameAndPassword: size: null ")
+        }
     }
 
 //    fun findUserByNameViewModel(name: String):Array<User>{

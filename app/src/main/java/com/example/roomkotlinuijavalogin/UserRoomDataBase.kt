@@ -56,18 +56,18 @@ public abstract class UserRoomDataBase: RoomDatabase() {
         suspend fun populateDatabase(userDao: UserDao) {
 
             Log.d("Login1", "UserRoomDataBase.populateDatabase")
-            userDao.deleteAll()
-
-            var user = User("user1", "111")
-            userDao.insert(user)
-            user = User("user1", "000")
-            userDao.insert(user)
-            user = User("user1", "999")
-            userDao.insert(user)
-            user = User("user2", "222")
-            userDao.insert(user)
-            user = User("user3", "333")
-            userDao.insert(user)
+//            userDao.deleteAll()
+//
+//            var user = User("user1", "111")
+//            userDao.insert(user)
+//            user = User("user1", "000")
+//            userDao.insert(user)
+//            user = User("user1", "999")
+//            userDao.insert(user)
+//            user = User("user2", "222")
+//            userDao.insert(user)
+//            user = User("user3", "333")
+//            userDao.insert(user)
 
             Log.d("Login", "UserRoomDataBase.populateDatabase")
         }

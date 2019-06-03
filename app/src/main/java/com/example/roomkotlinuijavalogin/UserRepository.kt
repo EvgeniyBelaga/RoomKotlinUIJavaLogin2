@@ -24,4 +24,10 @@ class UserRepository(private val userDao: UserDao) {
          Log.d("LoginV","UserRepository.findUserByNameRepository: size "+ (result.size))
         return result
     }
+
+    suspend fun findUserByNameAndPasswordRepository(name:String, password:String):Array<User>{
+        val result= userDao.findByNameAndPassword(name, password)
+        Log.d("LoginV","UserRepository.findUserByNameAndPasswordRepository: size "+ (result.size))
+        return result
+    }
 }

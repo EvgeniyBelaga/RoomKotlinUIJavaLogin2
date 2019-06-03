@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * @version V.2019.06.03_roomkotlinjavalogin
  *
- * todo: Commit message: [2019.06.03_15:26 Evgeniy] Done a,b. Fixed bug 'result = userDao.findByName(name)'
+ * todo: Commit message: [2019.06.03_17:40 Evgeniy]
  *
  * Description: Used as prototype for other app
  *
@@ -104,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
 //        myAsync.execute();
         mUserViewModel.findUserByNameViewModel("user1");
 
+        //mUserViewModel.findUserByNameAndPasswordViewModel("user1", "111");
+
         initilizeOnSubmitButtonPress();
 
         initilizeOnLogautButtonPress();
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         btnShowLog= findViewById(R.id.btnShowLog);
     }
 
-    public void initilizeLayoutDisplay(){
+    public  void initilizeLayoutDisplay(){
         if(MyUtils.isLogin){
             etUserName.setVisibility(View.GONE);
             etPassword.setVisibility(View.GONE);
@@ -141,9 +143,13 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyUtils.mCheckedUser= new User(etUserName.getText().toString(), etPassword.getText().toString());
-                mUserViewModel.loginUser(MyUtils.mCheckedUser);
-                initilizeLayoutDisplay();
+//                MyUtils.mCheckedUser= new User(etUserName.getText().toString(), etPassword.getText().toString());
+//                mUserViewModel.loginUser(MyUtils.mCheckedUser);
+//                initilizeLayoutDisplay();
+
+                mUserViewModel.findUserByNameAndPasswordViewModel(etUserName.getText().toString(), etPassword.getText().toString(),
+                        etUserName, etPassword, btnSubmit, btnLogOut);
+                //initilizeLayoutDisplay();
             }
         });
     }

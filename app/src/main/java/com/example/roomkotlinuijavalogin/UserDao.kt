@@ -14,6 +14,9 @@ interface UserDao {
     @Query("SELECT * FROM user_table WHERE column_userName LIKE :searchName")
      suspend fun findByName(searchName: String):Array<User>
 
+    @Query("SELECT * FROM user_table WHERE column_userName LIKE :searchName AND column_password LIKE :searchPassword")
+    suspend fun findByNameAndPassword(searchName: String, searchPassword: String): Array<User>
+
     @Insert
     suspend fun insert(user: User)
 
