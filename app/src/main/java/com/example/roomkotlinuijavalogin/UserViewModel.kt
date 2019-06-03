@@ -27,6 +27,34 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         repository.delateAll()
     }
 
+    fun findUserByName(name: String)= viewModelScope.launch(Dispatchers.IO) {
+        //repository.insert(user)
+        //Log.d("LoginViewModel",""+repository.findUserByName(name).size )
+         var usersByName=repository.findUserByName(name)
+        if (usersByName != null) {
+            Log.d("LoginV","UserViewModel. finUserByName: size "+ usersByName.size)
+            for(user in usersByName){
+                Log.d("LoginV","UserViewModel. finUserByName: "+ user.toString())
+            }
+        }
+        else{
+            Log.d("LoginV","UserViewModel. finUserByName: size: null ")
+        }
+
+//        for(user in MyUtils.usersByName){
+//            Log.d("LoginV","UserViewModel. finUserByName: "+ user.toString())
+//        }
+    }
+
+//    fun findUserByName(name: String):Array<User>{
+//        return repository.findUserByName(name)
+//    }
+
+//    {
+//        //Log.d("LoginViewModel",""+repository.findUserByName(name).size )
+//        return repository.findUserByName(name)
+//    }
+
     fun loginUser(myUser:User): Boolean{
         //var users= MyUtils.users
         var users= allUsers.value

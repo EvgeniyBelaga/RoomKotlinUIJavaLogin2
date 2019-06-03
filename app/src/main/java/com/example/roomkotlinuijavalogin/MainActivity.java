@@ -6,19 +6,21 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 /**
  * @version V.2019.06.03_roomkotlinjavalogin
  *
- * todo: Commit message: [2019.06.03_09:20 Evgeniy] Deleted unused clclasses
+ * todo: Commit message: [2019.06.03_14:40 Evgeniy]
  *
  * Description: Used as prototype for other app
  *
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etPassword;
     Button btnSubmit;
     Button btnLogOut;
+    Button btnShowLog;
     //boolean isLogin
 
 
@@ -81,19 +84,31 @@ public class MainActivity extends AppCompatActivity {
         mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         mUserViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
             @Override
-            public void onChanged(@Nullable final List<User> words) {
+            public void onChanged(@Nullable final List<User> users) {
                 // Update the cached copy of the words in the adapter.
                 //adapter.setWords(words);
-                Log.d("Login",""+ words.size());
-                MyUtils.users= words;
+                Log.d("Login",""+ users.size());
+                MyUtils.users= users;
                 Log.d("Login","MyUtils.users.size"+MyUtils.users.size());
             }
         });
         //Log.d("Login",""+ mUserViewModel.getAllUsers().getValue().size());
 
+        //User[] usersByName= mUserViewModel.findUserByName("user1");
+//        for(int i=0; i<MyUtils.usersByName.length; i++){
+//            Log.d("Login", "MainActivity: UsersByName: "+MyUtils.usersByName[i].toString());
+//        }
+        //mUserViewModel.findUserByName("user1");
+
+//        MyAsync myAsync= new MyAsync();
+//        myAsync.execute();
+        mUserViewModel.findUserByName("user1");
+
         initilizeOnSubmitButtonPress();
 
         initilizeOnLogautButtonPress();
+
+        initilizeShowLogButton();
     }
 
     public void initilizeLayout(){
@@ -101,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         etPassword= findViewById(R.id.etPassword);
         btnSubmit= findViewById(R.id.btnSubmit);
         btnLogOut= findViewById(R.id.btnLogOut);
+        btnShowLog= findViewById(R.id.btnShowLog);
     }
 
     public void initilizeLayoutDisplay(){
@@ -143,6 +159,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void initilizeShowLogButton(){
+        btnShowLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                for(int i=0; i<MyUtils.users.size(); i++){
+                    Log.d("Login", "MainActivity.ShowLog: "+MyUtils.users.get(i).toString());
+                }
+
+            }
+        });
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -166,5 +195,18 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor= sp.edit();
         editor.putBoolean(SP_BOOLEAN_KEY, MyUtils.isLogin);
         editor.commit();
+    }
+
+    public class MyAsync extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+//            MyUtils.usersByName=mUserViewModel.findUserByName("user2");
+//            for(int i=0; i<MyUtils.usersByName.length; i++){
+//                Log.d("Login", "MainActivity.MyAsync: UserByName: "+ MyUtils.usersByName[i].toString());
+//            }
+
+            return null;
+        }
     }
 }
