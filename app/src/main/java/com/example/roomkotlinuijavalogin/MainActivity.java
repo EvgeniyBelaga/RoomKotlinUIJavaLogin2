@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * @version V.2019.06.03_roomkotlinjavalogin
  *
- * todo: Commit message: [2019.06.03_09:04 Yariv] Added task comments
+ * todo: Commit message: [2019.06.03_09:05 Yariv] Initial commit develop
  *
  * Description: Used as prototype for other app
  *
