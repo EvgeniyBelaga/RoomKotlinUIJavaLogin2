@@ -13,14 +13,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 /**
  * @version V.2019.06.03_roomkotlinjavalogin
  *
- * todo: Commit message: [2019.06.03_14:40 Evgeniy]
+ * todo: Commit message: [2019.06.03_15:26 Evgeniy] Done a,b. Fixed bug 'result = userDao.findByName(name)'
  *
  * Description: Used as prototype for other app
  *
@@ -30,17 +29,18 @@ public class MainActivity extends AppCompatActivity {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
-    // todo-0603_a: Add button to logcat the user table including PK (primary key)
-    // todo-0603_b: Add auto-generate PK in user table (see commented code)
+    // done_todo-0603_a: Add button to logcat the user table including PK (primary key)
+    // done_todo-0603_b: Add auto-generate PK in user table (see commented code)
     // todo-0603_c: Use query fun 'findByName' to find User row match for login
     // todo-0603_d: Create query fun 'findUserPasswordMatch' use AND to retrieve the User object with this pair
     // todo-0603_e: Add to layout 2 editText & button to submit new user, add the user to table, logcat the whole table
+    //
     // todo-0603_f: Add a new table called Session, it's columns are:
     //   1) Auto generated PK :int
-    //   2) ProjectKey        :int
-    //   3) QzKey             :int
-    //   4) ActiveReportKey   :int
-    //   5) ActiveUserKey     :int
+    //   2) ProjectKey  :int
+    //   3) QzKey       :int
+    //   4) ReportKey   :int
+    //   5) UserKey     :int
     // todo-0603_g: Add a session query:
     //   1) In layout add EditTExt+submit button horizontol linear layout
     //   2) Create query fun 'findSessionByUser' that logcats the Session row when given username
@@ -94,15 +94,15 @@ public class MainActivity extends AppCompatActivity {
         });
         //Log.d("Login",""+ mUserViewModel.getAllUsers().getValue().size());
 
-        //User[] usersByName= mUserViewModel.findUserByName("user1");
+        //User[] usersByName= mUserViewModel.findUserByNameViewModel("user1");
 //        for(int i=0; i<MyUtils.usersByName.length; i++){
 //            Log.d("Login", "MainActivity: UsersByName: "+MyUtils.usersByName[i].toString());
 //        }
-        //mUserViewModel.findUserByName("user1");
+        //mUserViewModel.findUserByNameViewModel("user1");
 
 //        MyAsync myAsync= new MyAsync();
 //        myAsync.execute();
-        mUserViewModel.findUserByName("user1");
+        mUserViewModel.findUserByNameViewModel("user1");
 
         initilizeOnSubmitButtonPress();
 
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-//            MyUtils.usersByName=mUserViewModel.findUserByName("user2");
+//            MyUtils.usersByName=mUserViewModel.findUserByNameViewModel("user2");
 //            for(int i=0; i<MyUtils.usersByName.length; i++){
 //                Log.d("Login", "MainActivity.MyAsync: UserByName: "+ MyUtils.usersByName[i].toString());
 //            }

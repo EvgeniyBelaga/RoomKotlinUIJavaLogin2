@@ -27,12 +27,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         repository.delateAll()
     }
 
-    fun findUserByName(name: String)= viewModelScope.launch(Dispatchers.IO) {
+    fun findUserByNameViewModel(name: String)= viewModelScope.launch(Dispatchers.IO) {
         //repository.insert(user)
-        //Log.d("LoginViewModel",""+repository.findUserByName(name).size )
-         var usersByName=repository.findUserByName(name)
+        //Log.d("LoginViewModel",""+repository.findUserByNameViewModel(name).size )
+         var usersByName=repository.findUserByNameRepository(name)
         if (usersByName != null) {
-            Log.d("LoginV","UserViewModel. finUserByName: size "+ usersByName.size)
+            Log.d("LoginV","UserViewModel.findUserByNameViewModel: size "+ usersByName.size)
             for(user in usersByName){
                 Log.d("LoginV","UserViewModel. finUserByName: "+ user.toString())
             }
@@ -46,13 +46,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 //        }
     }
 
-//    fun findUserByName(name: String):Array<User>{
-//        return repository.findUserByName(name)
+//    fun findUserByNameViewModel(name: String):Array<User>{
+//        return repository.findUserByNameViewModel(name)
 //    }
 
 //    {
-//        //Log.d("LoginViewModel",""+repository.findUserByName(name).size )
-//        return repository.findUserByName(name)
+//        //Log.d("LoginViewModel",""+repository.findUserByNameViewModel(name).size )
+//        return repository.findUserByNameViewModel(name)
 //    }
 
     fun loginUser(myUser:User): Boolean{

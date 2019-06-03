@@ -26,7 +26,7 @@ public abstract class UserRoomDataBase: RoomDatabase() {
             if (tempInstance != null) {
                 return tempInstance
             }
-            synchronized(this) {
+                synchronized(this) {
                 val instance = Room.databaseBuilder(
                         context.applicationContext,
                         UserRoomDataBase::class.java,
@@ -59,6 +59,10 @@ public abstract class UserRoomDataBase: RoomDatabase() {
             userDao.deleteAll()
 
             var user = User("user1", "111")
+            userDao.insert(user)
+            user = User("user1", "000")
+            userDao.insert(user)
+            user = User("user1", "999")
             userDao.insert(user)
             user = User("user2", "222")
             userDao.insert(user)

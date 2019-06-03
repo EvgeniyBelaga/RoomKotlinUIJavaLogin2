@@ -18,10 +18,10 @@ class UserRepository(private val userDao: UserDao) {
         userDao.deleteAll()
     }
 
-    suspend fun findUserByName(name:String):Array<User>{
+    suspend fun findUserByNameRepository(name:String):Array<User>{
         //Log.d("LoginRep",""+userDao.findByName(name).size )
-
-         Log.d("LoginV","UserRepository. finUserByName: size "+ (userDao.findByName(name).size))
-        return userDao.findByName(name)
+         val result = userDao.findByName(name)
+         Log.d("LoginV","UserRepository.findUserByNameRepository: size "+ (result.size))
+        return result
     }
 }
