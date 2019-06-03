@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * @version V.2019.06.03_roomkotlinjavalogin
  *
- * todo: Commit message: [2019.06.03_17:40 Evgeniy]
+ * todo: Commit message: [2019.06.03_19:30 Evgeniy] Login by Query-Name&Password
  *
  * Description: Used as prototype for other app
  *
@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     //
     // done_todo-0603_a: Add button to logcat the user table including PK (primary key)
     // done_todo-0603_b: Add auto-generate PK in user table (see commented code)
-    // todo-0603_c: Use query fun 'findByName' to find User row match for login
-    // todo-0603_d: Create query fun 'findUserPasswordMatch' use AND to retrieve the User object with this pair
+    // done_todo-0603_c: Use query fun 'findByName' to find User row match for login
+    // done_todo-0603_d: Create query fun 'findUserPasswordMatch' use AND to retrieve the User object with this pair
     // todo-0603_e: Add to layout 2 editText & button to submit new user, add the user to table, logcat the whole table
     //
     // todo-0603_f: Add a new table called Session, it's columns are:
@@ -147,9 +147,24 @@ public class MainActivity extends AppCompatActivity {
 //                mUserViewModel.loginUser(MyUtils.mCheckedUser);
 //                initilizeLayoutDisplay();
 
-                mUserViewModel.findUserByNameAndPasswordViewModel(etUserName.getText().toString(), etPassword.getText().toString(),
-                        etUserName, etPassword, btnSubmit, btnLogOut);
+                mUserViewModel.findUserByNameAndPasswordViewModel(etUserName.getText().toString(), etPassword.getText().toString());
                 //initilizeLayoutDisplay();
+
+                mUserViewModel.getUserByNameAndPassword(etUserName.getText().toString(), etPassword.getText().toString())
+                        .observe(MainActivity.this, new Observer<List<User>>() {
+                            @Override
+                            public void onChanged(List<User> users) {
+                                Log.d("LoginSubmit","MainActivity:mUserViewModel.getUserByNameAndPassword: size"
+                                        + users.size() );
+
+                                if(users.size()>0){
+                                    Log.d("LoginSubmit","MainActivity:mUserViewModel.getUserByNameAndPassword: users: "
+                                            + users.get(0).toString());
+                                    MyUtils.isLogin= true;
+                                }
+                                initilizeLayoutDisplay();
+                            }
+                        });
             }
         });
     }

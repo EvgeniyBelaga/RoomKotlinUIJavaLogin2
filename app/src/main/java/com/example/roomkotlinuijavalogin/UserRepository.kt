@@ -21,13 +21,17 @@ class UserRepository(private val userDao: UserDao) {
     suspend fun findUserByNameRepository(name:String):Array<User>{
         //Log.d("LoginRep",""+userDao.findByName(name).size )
          val result = userDao.findByName(name)
-         Log.d("LoginV","UserRepository.findUserByNameRepository: size "+ (result.size))
+         Log.d("Login","UserRepository.findUserByNameRepository: size "+ (result.size))
         return result
     }
 
     suspend fun findUserByNameAndPasswordRepository(name:String, password:String):Array<User>{
         val result= userDao.findByNameAndPassword(name, password)
-        Log.d("LoginV","UserRepository.findUserByNameAndPasswordRepository: size "+ (result.size))
+        Log.d("Login","UserRepository.findUserByNameAndPasswordRepository: size "+ (result.size))
         return result
+    }
+
+    fun getUserByNameAndPassword(name:String, password:String):LiveData<List<User>>{
+        return userDao.getUserByNameAndPassword(name, password)
     }
 }

@@ -35,13 +35,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         //Log.d("LoginViewModel",""+repository.findUserByNameViewModel(name).size )
          var usersByName=repository.findUserByNameRepository(name)
         if (usersByName != null) {
-            Log.d("LoginV","UserViewModel.findUserByNameViewModel: size "+ usersByName.size)
+            Log.d("Login","UserViewModel.findUserByNameViewModel: size "+ usersByName.size)
             for(user in usersByName){
-                Log.d("LoginV","UserViewModel. finUserByName: "+ user.toString())
+                Log.d("Login","UserViewModel. finUserByName: "+ user.toString())
             }
         }
         else{
-            Log.d("LoginV","UserViewModel. finUserByName: size: null ")
+            Log.d("Login","UserViewModel. finUserByName: size: null ")
         }
 
 //        for(user in MyUtils.usersByName){
@@ -49,9 +49,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 //        }
     }
 
-    fun findUserByNameAndPasswordViewModel(name: String, password: String,
-                                           etName:EditText, etPassword:EditText,
-                                           btnSubmit:Button, btnLogout:Button)= viewModelScope.launch(Dispatchers.IO) {
+    fun findUserByNameAndPasswordViewModel(name: String, password: String)= viewModelScope.launch(Dispatchers.IO) {
         var usersByNameAndPassword= repository.findUserByNameAndPasswordRepository(name, password)
         if (usersByNameAndPassword != null) {
             Log.d("LoginV","UserViewModel.findUserByNameAndPasswordViewModel: size "+ usersByNameAndPassword.size)
@@ -59,18 +57,25 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 MyUtils.isLogin= true
 //                val mainActivity:MainActivity= MainActivity()
 //                mainActivity.initilizeLayoutDisplay()
-                etName.visibility= View.GONE
-                etPassword.visibility= View.GONE
-                btnSubmit.visibility= View.GONE
-                btnLogout.visibility= View.VISIBLE
+
             }
             for(user in usersByNameAndPassword){
-                Log.d("LoginV","UserViewModel. finUserByNameAndPasswordViewModel: "+ user.toString())
+                Log.d("Login","UserViewModel. finUserByNameAndPasswordViewModel: "+ user.toString())
             }
         }
         else{
-            Log.d("LoginV","UserViewModel. finUserByNameAndPassword: size: null ")
+            Log.d("Login","UserViewModel. finUserByNameAndPassword: size: null ")
         }
+    }
+
+    fun getUserByNameAndPassword(name:String, password:String):LiveData<List<User>>{
+        val result= repository.getUserByNameAndPassword(name, password)
+//        if(result.){
+//            MyUtils.isLogin= true
+//            Log.d("LoginIf", "UserViewModel, getBynameAndPassword: isLogin:"+ MyUtils.isLogin)
+//        }
+//        Log.d("Login", "UserViewModel, getBynameAndPassword: isLogin:"+ MyUtils.isLogin)
+        return result
     }
 
 //    fun findUserByNameViewModel(name: String):Array<User>{
