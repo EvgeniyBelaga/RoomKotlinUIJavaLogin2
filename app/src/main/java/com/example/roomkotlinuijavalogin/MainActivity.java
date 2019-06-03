@@ -14,7 +14,42 @@ import android.widget.EditText;
 
 import java.util.List;
 
+
+/**
+ * @version V.2019.06.03_roomkotlinjavalogin
+ *
+ * todo: Commit message: [2019.06.03_09:04 Yariv] Added task comments
+ *
+ * Description: Used as prototype for other app
+ *
+ */
+
 public class MainActivity extends AppCompatActivity {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    // todo-0603_: Add button to logcat the user table including PK (primary key)
+    // todo-0603_: Add auto-generate PK in user table (see commented code)
+    // todo-0603_: Use query fun 'findByName' to find User row match for login
+    // todo-0603_: Create query fun 'findUserPasswordMatch' use AND to retrieve the User object with this pair
+    // todo-0603_: Add to layout 2 editText & button to submit new user, add the user to table, logcat the whole table
+    // todo-0603_: Add a new table called Session, it's columns are:
+    //   1) Auto generated PK :int
+    //   2) ProjectKey        :int
+    //   3) QzKey             :int
+    //   4) ActiveReportKey   :int
+    //   5) ActiveUserKey     :int
+    // todo-0603_: Add a session query:
+    //   1) In layout add EditTExt+submit button horizontol linear layout
+    //   2) Create query fun 'findSessionByUser' that logcats the Session row when given username
+    //   3) When name entered in editText & submitted then show in logcat the user's session
+    // todo-0603_: Add a update to session table:
+    //   1) Add EditTExt fields for Project, Qz,Report keys + submit button
+    //   2) On every submit create a new session row in table for the current logged in user
+    //
+    //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     private UserViewModel mUserViewModel;
 
@@ -26,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnSubmit;
     Button btnLogOut;
     //boolean isLogin
-
-
 
 
 

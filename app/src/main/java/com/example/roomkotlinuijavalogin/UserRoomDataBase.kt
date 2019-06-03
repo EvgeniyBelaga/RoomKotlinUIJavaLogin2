@@ -15,7 +15,6 @@ public abstract class UserRoomDataBase: RoomDatabase() {
 
     abstract fun userDao(): UserDao
 
-
     companion object {
         @Volatile
         private var INSTANCE: UserRoomDataBase? = null
@@ -69,6 +68,5 @@ public abstract class UserRoomDataBase: RoomDatabase() {
             Log.d("Login", "UserRoomDataBase.populateDatabase")
         }
     }
-
 
 }
